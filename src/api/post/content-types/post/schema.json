@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post",
+    "description": "Publishable posts for devlogs, updates, announcements, and news"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true
+    },
+    "content": {
+      "type": "blocks",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["Devlog", "Update", "Announcement", "News"],
+      "required": true
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "publishedAtCustom": {
+      "type": "datetime",
+      "required": false
+    },
+    "discordPublish": {
+      "type": "boolean",
+      "default": false
+    },
+    "discordPublished": {
+      "type": "boolean",
+      "default": false
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["Draft", "Published", "Archived"],
+      "required": true,
+      "default": "Draft"
+    },
+    "tags": {
+      "type": "json",
+      "required": false
+    },
+    "seoTitle": {
+      "type": "string",
+      "required": false
+    },
+    "seoDescription": {
+      "type": "text",
+      "required": false
+    },
+    "discordTitle": {
+      "type": "string",
+      "required": false
+    },
+    "discordDescription": {
+      "type": "text",
+      "required": false
+    },
+    "websitePath": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
