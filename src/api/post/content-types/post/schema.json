@@ -56,12 +56,6 @@
       "type": "boolean",
       "default": false
     },
-    "status": {
-      "type": "enumeration",
-      "enum": ["Draft", "Published", "Archived"],
-      "required": true,
-      "default": "Draft"
-    },
     "tags": {
       "type": "json",
       "required": false

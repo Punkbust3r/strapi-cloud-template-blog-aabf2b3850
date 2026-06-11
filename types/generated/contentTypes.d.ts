@@ -642,9 +642,6 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     seoDescription: Schema.Attribute.Text;
     seoTitle: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    status: Schema.Attribute.Enumeration<['Draft', 'Published', 'Archived']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Draft'>;
     tags: Schema.Attribute.JSON;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
