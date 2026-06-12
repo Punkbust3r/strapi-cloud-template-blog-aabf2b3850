@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "published_discord_posts",
+  "info": {
+    "singularName": "published-discord-post",
+    "pluralName": "published-discord-posts",
+    "displayName": "Published Discord Post",
+    "description": "Discord messages created from Strapi content"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "strapiDocumentId": {
+      "type": "string",
+      "required": true
+    },
+    "contentType": {
+      "type": "string",
+      "required": true
+    },
+    "guildId": {
+      "type": "string",
+      "required": true
+    },
+    "channelId": {
+      "type": "string",
+      "required": true
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "publishedAt": {
+      "type": "datetime"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "linked_game_accounts",
+  "info": {
+    "singularName": "linked-game-account",
+    "pluralName": "linked-game-accounts",
+    "displayName": "Linked Game Account",
+    "description": "Discord accounts linked to game accounts"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "discordId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "username": {
+      "type": "string",
+      "required": true
+    },
+    "gameAccountId": {
+      "type": "string"
+    },
+    "isBlocked": {
+      "type": "boolean",
+      "default": false
+    },
+    "blockedReason": {
+      "type": "text"
+    },
+    "firstSeenAt": {
+      "type": "datetime"
+    },
+    "lastLoginAt": {
+      "type": "datetime"
+    }
+  }
+}

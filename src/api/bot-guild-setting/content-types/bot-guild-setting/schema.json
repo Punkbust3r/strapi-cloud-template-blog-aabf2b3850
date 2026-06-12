@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_guild_settings",
+  "info": {
+    "singularName": "bot-guild-setting",
+    "pluralName": "bot-guild-settings",
+    "displayName": "Bot Guild Setting",
+    "description": "Discord bot settings per guild"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guildId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "guildName": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "default": "de"
+    },
+    "commandPrefix": {
+      "type": "string"
+    },
+    "logChannelId": {
+      "type": "string"
+    },
+    "modLogChannelId": {
+      "type": "string"
+    },
+    "announcementChannelId": {
+      "type": "string"
+    },
+    "serverStatusChannelId": {
+      "type": "string"
+    },
+    "serverStatusMessageId": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_channel_settings",
+  "info": {
+    "singularName": "bot-channel-setting",
+    "pluralName": "bot-channel-settings",
+    "displayName": "Bot Channel Setting",
+    "description": "Discord bot channel mappings per guild"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guildId": {
+      "type": "string",
+      "required": true
+    },
+    "settingKey": {
+      "type": "string",
+      "required": true
+    },
+    "channelId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

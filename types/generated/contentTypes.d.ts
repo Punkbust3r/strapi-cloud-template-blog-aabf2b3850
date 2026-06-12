@@ -541,6 +541,144 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBotAuditLogBotAuditLog extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_audit_logs';
+  info: {
+    description: 'Discord bot audit log entries';
+    displayName: 'Bot Audit Log';
+    pluralName: 'bot-audit-logs';
+    singularName: 'bot-audit-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    action: Schema.Attribute.String & Schema.Attribute.Required;
+    actorDiscordId: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    detailsJson: Schema.Attribute.JSON;
+    guildId: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-audit-log.bot-audit-log'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    targetDiscordId: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBotChannelSettingBotChannelSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_channel_settings';
+  info: {
+    description: 'Discord bot channel mappings per guild';
+    displayName: 'Bot Channel Setting';
+    pluralName: 'bot-channel-settings';
+    singularName: 'bot-channel-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    channelId: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guildId: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-channel-setting.bot-channel-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    settingKey: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBotGuildSettingBotGuildSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_guild_settings';
+  info: {
+    description: 'Discord bot settings per guild';
+    displayName: 'Bot Guild Setting';
+    pluralName: 'bot-guild-settings';
+    singularName: 'bot-guild-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    announcementChannelId: Schema.Attribute.String;
+    commandPrefix: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guildId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    guildName: Schema.Attribute.String;
+    language: Schema.Attribute.String & Schema.Attribute.DefaultTo<'de'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-guild-setting.bot-guild-setting'
+    > &
+      Schema.Attribute.Private;
+    logChannelId: Schema.Attribute.String;
+    modLogChannelId: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    serverStatusChannelId: Schema.Attribute.String;
+    serverStatusMessageId: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBotModuleSettingBotModuleSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_module_settings';
+  info: {
+    description: 'Discord bot module settings per guild';
+    displayName: 'Bot Module Setting';
+    pluralName: 'bot-module-settings';
+    singularName: 'bot-module-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    guildId: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-module-setting.bot-module-setting'
+    > &
+      Schema.Attribute.Private;
+    moduleKey: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -605,6 +743,44 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLinkedGameAccountLinkedGameAccount
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'linked_game_accounts';
+  info: {
+    description: 'Discord accounts linked to game accounts';
+    displayName: 'Linked Game Account';
+    pluralName: 'linked-game-accounts';
+    singularName: 'linked-game-account';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    blockedReason: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    discordId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    firstSeenAt: Schema.Attribute.DateTime;
+    gameAccountId: Schema.Attribute.String;
+    isBlocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    lastLoginAt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::linked-game-account.linked-game-account'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    username: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiPostPost extends Struct.CollectionTypeSchema {
   collectionName: 'posts';
   info: {
@@ -648,6 +824,42 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     websitePath: Schema.Attribute.String;
+  };
+}
+
+export interface ApiPublishedDiscordPostPublishedDiscordPost
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'published_discord_posts';
+  info: {
+    description: 'Discord messages created from Strapi content';
+    displayName: 'Published Discord Post';
+    pluralName: 'published-discord-posts';
+    singularName: 'published-discord-post';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    channelId: Schema.Attribute.String & Schema.Attribute.Required;
+    contentType: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guildId: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::published-discord-post.published-discord-post'
+    > &
+      Schema.Attribute.Private;
+    messageId: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    strapiDocumentId: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
   };
 }
 
@@ -1165,9 +1377,15 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::bot-audit-log.bot-audit-log': ApiBotAuditLogBotAuditLog;
+      'api::bot-channel-setting.bot-channel-setting': ApiBotChannelSettingBotChannelSetting;
+      'api::bot-guild-setting.bot-guild-setting': ApiBotGuildSettingBotGuildSetting;
+      'api::bot-module-setting.bot-module-setting': ApiBotModuleSettingBotModuleSetting;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::linked-game-account.linked-game-account': ApiLinkedGameAccountLinkedGameAccount;
       'api::post.post': ApiPostPost;
+      'api::published-discord-post.published-discord-post': ApiPublishedDiscordPostPublishedDiscordPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

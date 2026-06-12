@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_audit_logs",
+  "info": {
+    "singularName": "bot-audit-log",
+    "pluralName": "bot-audit-logs",
+    "displayName": "Bot Audit Log",
+    "description": "Discord bot audit log entries"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guildId": {
+      "type": "string"
+    },
+    "actorDiscordId": {
+      "type": "string"
+    },
+    "targetDiscordId": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "required": true
+    },
+    "detailsJson": {
+      "type": "json"
+    }
+  }
+}

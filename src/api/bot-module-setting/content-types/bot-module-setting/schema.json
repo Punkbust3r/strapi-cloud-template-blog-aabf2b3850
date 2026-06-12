@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_module_settings",
+  "info": {
+    "singularName": "bot-module-setting",
+    "pluralName": "bot-module-settings",
+    "displayName": "Bot Module Setting",
+    "description": "Discord bot module settings per guild"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guildId": {
+      "type": "string",
+      "required": true
+    },
+    "moduleKey": {
+      "type": "string",
+      "required": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}
