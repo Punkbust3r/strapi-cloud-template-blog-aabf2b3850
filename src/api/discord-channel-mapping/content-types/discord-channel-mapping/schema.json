@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discord_channel_mappings",
+  "info": {
+    "singularName": "discord-channel-mapping",
+    "pluralName": "discord-channel-mappings",
+    "displayName": "Discord Channel Mapping",
+    "description": "Central Discord channel mappings for Nexus"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "channelId": {
+      "type": "string"
+    },
+    "channelName": {
+      "type": "string"
+    },
+    "channelType": {
+      "type": "enumeration",
+      "enum": ["text", "announcement", "forum", "voice", "category", "unknown"]
+    },
+    "categoryName": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "enumeration",
+      "enum": ["logs", "moderation", "announcements", "devlogs", "news", "tickets", "welcome", "status", "team", "system"]
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

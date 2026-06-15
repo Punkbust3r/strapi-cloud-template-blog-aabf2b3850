@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_feature_settings",
+  "info": {
+    "singularName": "bot-feature-setting",
+    "pluralName": "bot-feature-settings",
+    "displayName": "Bot Feature Setting",
+    "description": "Nexus feature and module settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "featureKey": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["core", "moderation", "community", "tickets", "cms", "fivem", "status", "analytics", "system"]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["planned", "preview", "active", "disabled"]
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

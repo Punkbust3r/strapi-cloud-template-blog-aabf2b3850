@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "server_status_settings",
+  "info": {
+    "singularName": "server-status-setting",
+    "pluralName": "server-status-settings",
+    "displayName": "Server Status Setting",
+    "description": "Status sources for website, admin panel, Discord, and FiveM"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["website", "strapi", "discord_bot", "fivem_dev", "fivem_live", "database", "custom"]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["online", "degraded", "offline", "pending", "maintenance", "unknown"]
+    },
+    "publicVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "discordVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "sortOrder": {
+      "type": "integer"
+    },
+    "refreshIntervalSeconds": {
+      "type": "integer",
+      "default": 60
+    },
+    "lastCheckedAt": {
+      "type": "datetime"
+    },
+    "message": {
+      "type": "text"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

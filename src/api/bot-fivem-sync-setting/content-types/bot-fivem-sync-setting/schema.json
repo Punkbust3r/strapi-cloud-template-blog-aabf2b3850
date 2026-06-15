@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_fivem_sync_settings",
+  "info": {
+    "singularName": "bot-fivem-sync-setting",
+    "pluralName": "bot-fivem-sync-settings",
+    "displayName": "Bot FiveM Sync Setting",
+    "description": "FiveM account, whitelist, role, and ban sync settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "accountLinkEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "whitelistSyncEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "banSyncEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "roleSyncEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "logEventsEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "webhookSecretHint": {
+      "type": "string"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

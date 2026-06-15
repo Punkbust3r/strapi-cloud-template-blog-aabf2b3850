@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_level_settings",
+  "info": {
+    "singularName": "bot-level-setting",
+    "pluralName": "bot-level-settings",
+    "displayName": "Bot Level Setting",
+    "description": "XP, level, and rank settings for Nexus"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "xpPerMessageMin": {
+      "type": "integer",
+      "default": 8
+    },
+    "xpPerMessageMax": {
+      "type": "integer",
+      "default": 18
+    },
+    "cooldownSeconds": {
+      "type": "integer",
+      "default": 60
+    },
+    "voiceXpEnabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "ignoreBots": {
+      "type": "boolean",
+      "default": true
+    },
+    "ignoreCommands": {
+      "type": "boolean",
+      "default": true
+    },
+    "levelRolesJson": {
+      "type": "json"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

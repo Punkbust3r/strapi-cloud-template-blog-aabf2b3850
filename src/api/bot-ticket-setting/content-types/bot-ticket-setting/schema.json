@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_ticket_settings",
+  "info": {
+    "singularName": "bot-ticket-setting",
+    "pluralName": "bot-ticket-settings",
+    "displayName": "Bot Ticket Setting",
+    "description": "Nexus ticket flow settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "ticketType": {
+      "type": "enumeration",
+      "enum": ["support", "application", "whitelist", "bug", "team", "faction"]
+    },
+    "channelId": {
+      "type": "string"
+    },
+    "channelName": {
+      "type": "string"
+    },
+    "categoryId": {
+      "type": "string"
+    },
+    "categoryName": {
+      "type": "string"
+    },
+    "supportRoleId": {
+      "type": "string"
+    },
+    "supportRoleName": {
+      "type": "string"
+    },
+    "panelTitle": {
+      "type": "string"
+    },
+    "panelDescription": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "string"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

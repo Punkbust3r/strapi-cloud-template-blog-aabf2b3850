@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_welcome_settings",
+  "info": {
+    "singularName": "bot-welcome-setting",
+    "pluralName": "bot-welcome-settings",
+    "displayName": "Bot Welcome Setting",
+    "description": "Welcome and leave message settings for Nexus"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "welcomeChannelId": {
+      "type": "string"
+    },
+    "welcomeChannelName": {
+      "type": "string"
+    },
+    "leaveChannelId": {
+      "type": "string"
+    },
+    "leaveChannelName": {
+      "type": "string"
+    },
+    "useEmbed": {
+      "type": "boolean",
+      "default": true
+    },
+    "mentionUser": {
+      "type": "boolean",
+      "default": true
+    },
+    "assignJoinRole": {
+      "type": "boolean",
+      "default": false
+    },
+    "joinRoleId": {
+      "type": "string"
+    },
+    "joinRoleName": {
+      "type": "string"
+    },
+    "titleTemplate": {
+      "type": "string"
+    },
+    "messageTemplate": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

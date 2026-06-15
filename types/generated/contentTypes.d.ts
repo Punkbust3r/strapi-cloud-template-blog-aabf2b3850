@@ -606,6 +606,103 @@ export interface ApiBotChannelSettingBotChannelSetting
   };
 }
 
+export interface ApiBotFeatureSettingBotFeatureSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_feature_settings';
+  info: {
+    description: 'Nexus feature and module settings';
+    displayName: 'Bot Feature Setting';
+    pluralName: 'bot-feature-settings';
+    singularName: 'bot-feature-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      [
+        'core',
+        'moderation',
+        'community',
+        'tickets',
+        'cms',
+        'fivem',
+        'status',
+        'analytics',
+        'system',
+      ]
+    >;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    featureKey: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-feature-setting.bot-feature-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<
+      ['planned', 'preview', 'active', 'disabled']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBotFivemSyncSettingBotFivemSyncSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_fivem_sync_settings';
+  info: {
+    description: 'FiveM account, whitelist, role, and ban sync settings';
+    displayName: 'Bot FiveM Sync Setting';
+    pluralName: 'bot-fivem-sync-settings';
+    singularName: 'bot-fivem-sync-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    accountLinkEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    banSyncEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-fivem-sync-setting.bot-fivem-sync-setting'
+    > &
+      Schema.Attribute.Private;
+    logEventsEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    publishedAt: Schema.Attribute.DateTime;
+    roleSyncEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    webhookSecretHint: Schema.Attribute.String;
+    whitelistSyncEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+  };
+}
+
 export interface ApiBotGuildSettingBotGuildSetting
   extends Struct.CollectionTypeSchema {
   collectionName: 'bot_guild_settings';
@@ -646,6 +743,48 @@ export interface ApiBotGuildSettingBotGuildSetting
   };
 }
 
+export interface ApiBotLevelSettingBotLevelSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_level_settings';
+  info: {
+    description: 'XP, level, and rank settings for Nexus';
+    displayName: 'Bot Level Setting';
+    pluralName: 'bot-level-settings';
+    singularName: 'bot-level-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    configJson: Schema.Attribute.JSON;
+    cooldownSeconds: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<60>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    ignoreBots: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    ignoreCommands: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    levelRolesJson: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-level-setting.bot-level-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    voiceXpEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    xpPerMessageMax: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<18>;
+    xpPerMessageMin: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<8>;
+  };
+}
+
 export interface ApiBotModuleSettingBotModuleSetting
   extends Struct.CollectionTypeSchema {
   collectionName: 'bot_module_settings';
@@ -679,6 +818,148 @@ export interface ApiBotModuleSettingBotModuleSetting
   };
 }
 
+export interface ApiBotReactionRolePanelBotReactionRolePanel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_reaction_role_panels';
+  info: {
+    description: 'Reaction role panel settings for Nexus';
+    displayName: 'Bot Reaction Role Panel';
+    pluralName: 'bot-reaction-role-panels';
+    singularName: 'bot-reaction-role-panel';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    allowMultiple: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    channelId: Schema.Attribute.String;
+    channelName: Schema.Attribute.String;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    displayMode: Schema.Attribute.Enumeration<
+      ['buttons', 'reactions', 'select_menu']
+    >;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    exclusiveRoles: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-reaction-role-panel.bot-reaction-role-panel'
+    > &
+      Schema.Attribute.Private;
+    messageId: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    rolesJson: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBotTicketSettingBotTicketSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_ticket_settings';
+  info: {
+    description: 'Nexus ticket flow settings';
+    displayName: 'Bot Ticket Setting';
+    pluralName: 'bot-ticket-settings';
+    singularName: 'bot-ticket-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    buttonText: Schema.Attribute.String;
+    categoryId: Schema.Attribute.String;
+    categoryName: Schema.Attribute.String;
+    channelId: Schema.Attribute.String;
+    channelName: Schema.Attribute.String;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    emoji: Schema.Attribute.String;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-ticket-setting.bot-ticket-setting'
+    > &
+      Schema.Attribute.Private;
+    panelDescription: Schema.Attribute.Text;
+    panelTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    supportRoleId: Schema.Attribute.String;
+    supportRoleName: Schema.Attribute.String;
+    ticketType: Schema.Attribute.Enumeration<
+      ['support', 'application', 'whitelist', 'bug', 'team', 'faction']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBotWelcomeSettingBotWelcomeSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bot_welcome_settings';
+  info: {
+    description: 'Welcome and leave message settings for Nexus';
+    displayName: 'Bot Welcome Setting';
+    pluralName: 'bot-welcome-settings';
+    singularName: 'bot-welcome-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    assignJoinRole: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    buttonText: Schema.Attribute.String;
+    buttonUrl: Schema.Attribute.String;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    joinRoleId: Schema.Attribute.String;
+    joinRoleName: Schema.Attribute.String;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    leaveChannelId: Schema.Attribute.String;
+    leaveChannelName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bot-welcome-setting.bot-welcome-setting'
+    > &
+      Schema.Attribute.Private;
+    mentionUser: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    messageTemplate: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    titleTemplate: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    useEmbed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    welcomeChannelId: Schema.Attribute.String;
+    welcomeChannelName: Schema.Attribute.String;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -705,6 +986,145 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDiscordChannelMappingDiscordChannelMapping
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'discord_channel_mappings';
+  info: {
+    description: 'Central Discord channel mappings for Nexus';
+    displayName: 'Discord Channel Mapping';
+    pluralName: 'discord-channel-mappings';
+    singularName: 'discord-channel-mapping';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    categoryName: Schema.Attribute.String;
+    channelId: Schema.Attribute.String;
+    channelName: Schema.Attribute.String;
+    channelType: Schema.Attribute.Enumeration<
+      ['text', 'announcement', 'forum', 'voice', 'category', 'unknown']
+    >;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::discord-channel-mapping.discord-channel-mapping'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    purpose: Schema.Attribute.Enumeration<
+      [
+        'logs',
+        'moderation',
+        'announcements',
+        'devlogs',
+        'news',
+        'tickets',
+        'welcome',
+        'status',
+        'team',
+        'system',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDiscordOauthSettingDiscordOauthSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'discord_oauth_settings';
+  info: {
+    description: 'Safe Discord OAuth configuration metadata';
+    displayName: 'Discord OAuth Setting';
+    pluralName: 'discord-oauth-settings';
+    singularName: 'discord-oauth-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    adminRoleId: Schema.Attribute.String;
+    adminRoleName: Schema.Attribute.String;
+    allowedRoleIdsJson: Schema.Attribute.JSON;
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deniedRedirectPath: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/admin-panel?error=forbidden'>;
+    developerRoleId: Schema.Attribute.String;
+    developerRoleName: Schema.Attribute.String;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    guildId: Schema.Attribute.String & Schema.Attribute.Required;
+    guildName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::discord-oauth-setting.discord-oauth-setting'
+    > &
+      Schema.Attribute.Private;
+    loginRedirectPath: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/admin-panel'>;
+    projectLeadRoleId: Schema.Attribute.String;
+    projectLeadRoleName: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDiscordRoleMappingDiscordRoleMapping
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'discord_role_mappings';
+  info: {
+    description: 'Central Discord role mappings for Nexus';
+    displayName: 'Discord Role Mapping';
+    pluralName: 'discord-role-mappings';
+    singularName: 'discord-role-mapping';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['admin', 'team', 'community', 'fivem', 'faction', 'gang', 'system']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::discord-role-mapping.discord-role-mapping'
+    > &
+      Schema.Attribute.Private;
+    permissionsJson: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    required: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    roleId: Schema.Attribute.String;
+    roleName: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -860,6 +1280,62 @@ export interface ApiPublishedDiscordPostPublishedDiscordPost
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiServerStatusSettingServerStatusSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'server_status_settings';
+  info: {
+    description: 'Status sources for website, admin panel, Discord, and FiveM';
+    displayName: 'Server Status Setting';
+    pluralName: 'server-status-settings';
+    singularName: 'server-status-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    configJson: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    discordVisible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    label: Schema.Attribute.String;
+    lastCheckedAt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::server-status-setting.server-status-setting'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    publicVisible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    publishedAt: Schema.Attribute.DateTime;
+    refreshIntervalSeconds: Schema.Attribute.Integer &
+      Schema.Attribute.DefaultTo<60>;
+    sortOrder: Schema.Attribute.Integer;
+    source: Schema.Attribute.Enumeration<
+      [
+        'website',
+        'strapi',
+        'discord_bot',
+        'fivem_dev',
+        'fivem_live',
+        'database',
+        'custom',
+      ]
+    >;
+    status: Schema.Attribute.Enumeration<
+      ['online', 'degraded', 'offline', 'pending', 'maintenance', 'unknown']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1379,13 +1855,23 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::bot-audit-log.bot-audit-log': ApiBotAuditLogBotAuditLog;
       'api::bot-channel-setting.bot-channel-setting': ApiBotChannelSettingBotChannelSetting;
+      'api::bot-feature-setting.bot-feature-setting': ApiBotFeatureSettingBotFeatureSetting;
+      'api::bot-fivem-sync-setting.bot-fivem-sync-setting': ApiBotFivemSyncSettingBotFivemSyncSetting;
       'api::bot-guild-setting.bot-guild-setting': ApiBotGuildSettingBotGuildSetting;
+      'api::bot-level-setting.bot-level-setting': ApiBotLevelSettingBotLevelSetting;
       'api::bot-module-setting.bot-module-setting': ApiBotModuleSettingBotModuleSetting;
+      'api::bot-reaction-role-panel.bot-reaction-role-panel': ApiBotReactionRolePanelBotReactionRolePanel;
+      'api::bot-ticket-setting.bot-ticket-setting': ApiBotTicketSettingBotTicketSetting;
+      'api::bot-welcome-setting.bot-welcome-setting': ApiBotWelcomeSettingBotWelcomeSetting;
       'api::category.category': ApiCategoryCategory;
+      'api::discord-channel-mapping.discord-channel-mapping': ApiDiscordChannelMappingDiscordChannelMapping;
+      'api::discord-oauth-setting.discord-oauth-setting': ApiDiscordOauthSettingDiscordOauthSetting;
+      'api::discord-role-mapping.discord-role-mapping': ApiDiscordRoleMappingDiscordRoleMapping;
       'api::global.global': ApiGlobalGlobal;
       'api::linked-game-account.linked-game-account': ApiLinkedGameAccountLinkedGameAccount;
       'api::post.post': ApiPostPost;
       'api::published-discord-post.published-discord-post': ApiPublishedDiscordPostPublishedDiscordPost;
+      'api::server-status-setting.server-status-setting': ApiServerStatusSettingServerStatusSetting;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

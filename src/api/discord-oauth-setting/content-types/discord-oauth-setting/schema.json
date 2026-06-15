@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discord_oauth_settings",
+  "info": {
+    "singularName": "discord-oauth-setting",
+    "pluralName": "discord-oauth-settings",
+    "displayName": "Discord OAuth Setting",
+    "description": "Safe Discord OAuth configuration metadata"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guildId": {
+      "type": "string",
+      "required": true
+    },
+    "guildName": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "projectLeadRoleId": {
+      "type": "string"
+    },
+    "projectLeadRoleName": {
+      "type": "string"
+    },
+    "adminRoleId": {
+      "type": "string"
+    },
+    "adminRoleName": {
+      "type": "string"
+    },
+    "developerRoleId": {
+      "type": "string"
+    },
+    "developerRoleName": {
+      "type": "string"
+    },
+    "allowedRoleIdsJson": {
+      "type": "json"
+    },
+    "loginRedirectPath": {
+      "type": "string",
+      "default": "/admin-panel"
+    },
+    "deniedRedirectPath": {
+      "type": "string",
+      "default": "/admin-panel?error=forbidden"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discord_role_mappings",
+  "info": {
+    "singularName": "discord-role-mapping",
+    "pluralName": "discord-role-mappings",
+    "displayName": "Discord Role Mapping",
+    "description": "Central Discord role mappings for Nexus"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "roleId": {
+      "type": "string"
+    },
+    "roleName": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["admin", "team", "community", "fivem", "faction", "gang", "system"]
+    },
+    "description": {
+      "type": "text"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "permissionsJson": {
+      "type": "json"
+    }
+  }
+}

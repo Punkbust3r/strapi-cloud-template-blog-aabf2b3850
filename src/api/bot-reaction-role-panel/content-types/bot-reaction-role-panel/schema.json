@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bot_reaction_role_panels",
+  "info": {
+    "singularName": "bot-reaction-role-panel",
+    "pluralName": "bot-reaction-role-panels",
+    "displayName": "Bot Reaction Role Panel",
+    "description": "Reaction role panel settings for Nexus"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "channelId": {
+      "type": "string"
+    },
+    "channelName": {
+      "type": "string"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "displayMode": {
+      "type": "enumeration",
+      "enum": ["buttons", "reactions", "select_menu"]
+    },
+    "allowMultiple": {
+      "type": "boolean",
+      "default": true
+    },
+    "exclusiveRoles": {
+      "type": "boolean",
+      "default": false
+    },
+    "rolesJson": {
+      "type": "json"
+    },
+    "configJson": {
+      "type": "json"
+    }
+  }
+}
