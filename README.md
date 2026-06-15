@@ -69,3 +69,16 @@ npm run seed:nexus
 ```
 
 The seed is idempotent and does not delete existing data.
+
+## Nexus V2 Cloud Seed
+
+1. API Token Rechte in Strapi Cloud fuer die Nexus Collections pruefen.
+2. `.env` Werte setzen: `STRAPI_CLOUD_URL`, `STRAPI_API_TOKEN`, `DISCORD_GUILD_ID`.
+3. Cloud Seed ausfuehren:
+
+```
+npm run seed:nexus:cloud
+```
+
+4. Strapi Cloud Content Manager pruefen.
+5. Admin Panel neu laden.
