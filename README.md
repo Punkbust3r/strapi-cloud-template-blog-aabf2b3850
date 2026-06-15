@@ -59,3 +59,13 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## Nexus V2 Seed Data
+
+Seed safe default Nexus V2 Discord Bot and Admin Panel data:
+
+```
+npm run seed:nexus
+```
+
+The seed is idempotent and does not delete existing data.
