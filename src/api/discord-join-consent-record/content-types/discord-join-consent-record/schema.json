@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discord_join_consent_records",
+  "info": {
+    "singularName": "discord-join-consent-record",
+    "pluralName": "discord-join-consent-records",
+    "displayName": "Discord Join Consent Record",
+    "description": "Versioned consent records for Discord join, account mapping and 18+ confirmation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "discordId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "discordUsername": {
+      "type": "string"
+    },
+    "discordGlobalName": {
+      "type": "string"
+    },
+    "discordAvatarUrl": {
+      "type": "string"
+    },
+    "guildId": {
+      "type": "string"
+    },
+    "privacyAccepted": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "privacyAcceptedAt": {
+      "type": "datetime"
+    },
+    "age18Confirmed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "age18ConfirmedAt": {
+      "type": "datetime"
+    },
+    "consentVersion": {
+      "type": "string",
+      "required": true
+    },
+    "privacyPolicyVersion": {
+      "type": "string",
+      "required": true
+    },
+    "termsVersion": {
+      "type": "string"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": [
+        "website_discord_join_dialog",
+        "oauth_callback",
+        "bot_guild_member_add",
+        "manual_admin",
+        "import",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "inviteOpenedAt": {
+      "type": "datetime"
+    },
+    "joinedAt": {
+      "type": "datetime"
+    },
+    "revokedAt": {
+      "type": "datetime"
+    },
+    "ipHash": {
+      "type": "string"
+    },
+    "userAgentHash": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}

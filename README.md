@@ -82,3 +82,22 @@ npm run seed:nexus:cloud
 
 4. Strapi Cloud Content Manager pruefen.
 5. Admin Panel neu laden.
+
+## Discord Join Consent Records
+
+Die lokale Strapi-Instanz enthaelt den Content Type `discord-join-consent-record` mit dem REST Endpoint:
+
+```txt
+/api/discord-join-consent-records
+```
+
+Die Website schreibt dort Discord Join Consent Records, bevor der Discord Invite geoeffnet wird. Der Discord Bot kann diese Records read-only pruefen, wenn `DISCORD_JOIN_CONSENT_ENFORCEMENT_ENABLED=true` gesetzt ist.
+
+Wichtige Felder:
+
+- `discordId` eindeutig pro Discord User.
+- `privacyAccepted` und `age18Confirmed` muessen fuer gueltigen Consent `true` sein.
+- `revokedAt` macht den Consent ungueltig.
+- `ipHash` und `userAgentHash` duerfen nur gehaschte Werte enthalten.
+
+Fuer Dev-Aufgaben bevorzugt lokal entwickeln und testen, damit keine unnoetigen Strapi Cloud API Calls entstehen.
