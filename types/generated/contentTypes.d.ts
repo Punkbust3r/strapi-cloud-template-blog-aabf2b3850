@@ -1046,6 +1046,70 @@ export interface ApiDiscordChannelMappingDiscordChannelMapping
   };
 }
 
+export interface ApiDiscordJoinConsentRecordDiscordJoinConsentRecord
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'discord_join_consent_records';
+  info: {
+    description: 'Versioned consent records for Discord join, account mapping and 18+ confirmation';
+    displayName: 'Discord Join Consent Record';
+    pluralName: 'discord-join-consent-records';
+    singularName: 'discord-join-consent-record';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    age18Confirmed: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    age18ConfirmedAt: Schema.Attribute.DateTime;
+    consentVersion: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    discordAvatarUrl: Schema.Attribute.String;
+    discordGlobalName: Schema.Attribute.String;
+    discordId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    discordUsername: Schema.Attribute.String;
+    guildId: Schema.Attribute.String;
+    inviteOpenedAt: Schema.Attribute.DateTime;
+    ipHash: Schema.Attribute.String;
+    joinedAt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::discord-join-consent-record.discord-join-consent-record'
+    > &
+      Schema.Attribute.Private;
+    metadata: Schema.Attribute.JSON;
+    privacyAccepted: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    privacyAcceptedAt: Schema.Attribute.DateTime;
+    privacyPolicyVersion: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    revokedAt: Schema.Attribute.DateTime;
+    source: Schema.Attribute.Enumeration<
+      [
+        'website_discord_join_dialog',
+        'oauth_callback',
+        'bot_guild_member_add',
+        'manual_admin',
+        'import',
+        'unknown',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'unknown'>;
+    termsVersion: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userAgentHash: Schema.Attribute.String;
+  };
+}
+
 export interface ApiDiscordOauthSettingDiscordOauthSetting
   extends Struct.CollectionTypeSchema {
   collectionName: 'discord_oauth_settings';
@@ -1865,6 +1929,7 @@ declare module '@strapi/strapi' {
       'api::bot-welcome-setting.bot-welcome-setting': ApiBotWelcomeSettingBotWelcomeSetting;
       'api::category.category': ApiCategoryCategory;
       'api::discord-channel-mapping.discord-channel-mapping': ApiDiscordChannelMappingDiscordChannelMapping;
+      'api::discord-join-consent-record.discord-join-consent-record': ApiDiscordJoinConsentRecordDiscordJoinConsentRecord;
       'api::discord-oauth-setting.discord-oauth-setting': ApiDiscordOauthSettingDiscordOauthSetting;
       'api::discord-role-mapping.discord-role-mapping': ApiDiscordRoleMappingDiscordRoleMapping;
       'api::global.global': ApiGlobalGlobal;
