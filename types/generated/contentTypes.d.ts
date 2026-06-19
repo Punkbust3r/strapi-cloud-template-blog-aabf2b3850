@@ -1231,7 +1231,7 @@ export interface ApiLinkedGameAccountLinkedGameAccount
   extends Struct.CollectionTypeSchema {
   collectionName: 'linked_game_accounts';
   info: {
-    description: 'Discord accounts linked to game accounts';
+    description: 'Primary MRP:V identity account used for Discord/FiveM/UCP linkage and join-state decisions';
     displayName: 'Linked Game Account';
     pluralName: 'linked-game-accounts';
     singularName: 'linked-game-account';
@@ -1240,28 +1240,51 @@ export interface ApiLinkedGameAccountLinkedGameAccount
     draftAndPublish: false;
   };
   attributes: {
+    accountStatus: Schema.Attribute.Enumeration<
+      ['pending_registration', 'active', 'blocked', 'banned', 'suspended']
+    > &
+      Schema.Attribute.DefaultTo<'pending_registration'>;
+    banExpiresAt: Schema.Attribute.DateTime;
+    banReason: Schema.Attribute.Text;
     blockedReason: Schema.Attribute.Text;
+    consentRecord: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::discord-join-consent-record.discord-join-consent-record'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    discordAvatarUrl: Schema.Attribute.String;
+    discordGlobalName: Schema.Attribute.String;
     discordId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    discordUsername: Schema.Attribute.String;
+    displayName: Schema.Attribute.String;
+    firstJoinAt: Schema.Attribute.DateTime;
     firstSeenAt: Schema.Attribute.DateTime;
     gameAccountId: Schema.Attribute.String;
     isBlocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    lastJoinAt: Schema.Attribute.DateTime;
     lastLoginAt: Schema.Attribute.DateTime;
+    lastSeenAt: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::linked-game-account.linked-game-account'
     > &
       Schema.Attribute.Private;
+    metadata: Schema.Attribute.JSON;
+    primaryIdentifier: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    requiresOnboarding: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    ucpAccountId: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     username: Schema.Attribute.String & Schema.Attribute.Required;
+    warningCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 

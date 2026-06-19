@@ -5,7 +5,7 @@
     "singularName": "linked-game-account",
     "pluralName": "linked-game-accounts",
     "displayName": "Linked Game Account",
-    "description": "Discord accounts linked to game accounts"
+    "description": "Primary MRP:V identity account used for Discord/FiveM/UCP linkage and join-state decisions"
   },
   "options": {
     "draftAndPublish": false
@@ -21,8 +21,41 @@
       "type": "string",
       "required": true
     },
+    "displayName": {
+      "type": "string"
+    },
+    "discordUsername": {
+      "type": "string"
+    },
+    "discordGlobalName": {
+      "type": "string"
+    },
+    "discordAvatarUrl": {
+      "type": "string"
+    },
+    "primaryIdentifier": {
+      "type": "string"
+    },
     "gameAccountId": {
       "type": "string"
+    },
+    "ucpAccountId": {
+      "type": "string"
+    },
+    "accountStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending_registration",
+        "active",
+        "blocked",
+        "banned",
+        "suspended"
+      ],
+      "default": "pending_registration"
+    },
+    "requiresOnboarding": {
+      "type": "boolean",
+      "default": true
     },
     "isBlocked": {
       "type": "boolean",
@@ -31,11 +64,38 @@
     "blockedReason": {
       "type": "text"
     },
+    "warningCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "banReason": {
+      "type": "text"
+    },
+    "banExpiresAt": {
+      "type": "datetime"
+    },
     "firstSeenAt": {
+      "type": "datetime"
+    },
+    "lastSeenAt": {
+      "type": "datetime"
+    },
+    "firstJoinAt": {
+      "type": "datetime"
+    },
+    "lastJoinAt": {
       "type": "datetime"
     },
     "lastLoginAt": {
       "type": "datetime"
+    },
+    "consentRecord": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::discord-join-consent-record.discord-join-consent-record"
+    },
+    "metadata": {
+      "type": "json"
     }
   }
 }
